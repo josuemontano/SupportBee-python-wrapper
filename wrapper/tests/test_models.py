@@ -3,23 +3,24 @@ import pytest
 from ..models import Requester, Ticket
 
 
-class TestRequester:
+class TestRequester(object):
     def test_init(self):
-        requester = Requester("John", "Smith")
-        assert requester.name == "John"
-        assert requester.email == "Smith"
+        requester = Requester('John', 'example@example.com')
+        assert requester.name == 'John'
+        assert requester.email == 'example@example.com'
 
 
-class TestTicket:
-    def test_init(self):
-        requester = Requester("John", "Smith")
-        ticket = Ticket(1, "Subject", "Content", requester)
+class TestTicket(object):
+    def test_init(self, ticket):
         assert ticket.id == 1
-        assert ticket.subject == "Subject"
-        assert ticket.content == "Content"
-        assert ticket.requester == requester
+        assert ticket.subject == 'Subject'
+        assert ticket.content == 'Content'
         assert ticket.starred == False
         assert ticket.spam == False
+
+        assert isinstance(ticket.requester, Requester)
+        assert ticket.requester.name == 'John'
+        assert ticket.requester.email == 'example@example.com'
 
     def test_eq(self):
         ticket_a = Ticket(1, None, None, None)
