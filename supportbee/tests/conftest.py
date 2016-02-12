@@ -6,7 +6,7 @@ from ..client.meta import SupportbeeClient
 
 @pytest.fixture
 def supportbee_client():
-    return SupportbeeClient('company', 'token_123')
+    return SupportbeeClient('company', 'token_123', 'resource')
 
 
 @pytest.fixture

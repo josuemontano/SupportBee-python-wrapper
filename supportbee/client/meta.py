@@ -8,17 +8,16 @@ TIMEOUT = 15
 class SupportbeeClient(object):
     """ Base SupportBee API client
     """
-    resource = None
     schema = None
-
     root = 'https://{0}.supportbee.com'
 
-    def __init__(self, company, api_token):
+    def __init__(self, company, api_token, resource):
         if api_token is None:
             raise Error('You must provide an API token')
 
         self.base_url = self.root.format(company)
         self.api_token = api_token
+        self.resource = resource
 
     def build_get_url(self, **kwargs):
         """ Add GET params to base URL
