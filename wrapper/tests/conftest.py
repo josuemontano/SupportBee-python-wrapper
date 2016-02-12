@@ -12,7 +12,7 @@ def supportbee_api_wrapper():
 @pytest.fixture
 def ticket():
     requester = Requester('John', 'example@example.com')
-    return Ticket(1, 'Subject', 'Content', requester)
+    return Ticket(1, 'Subject', dict(text='Text content', html='HTML content'), requester)
 
 
 @pytest.fixture

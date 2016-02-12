@@ -14,7 +14,7 @@ class TestTicket(object):
     def test_init(self, ticket):
         assert ticket.id == 1
         assert ticket.subject == 'Subject'
-        assert ticket.content == 'Content'
+        assert ticket.content == {'html': 'HTML content', 'text': 'Text content'}
         assert ticket.starred == False
         assert ticket.spam == False
 
@@ -23,13 +23,13 @@ class TestTicket(object):
         assert ticket.requester.email == 'example@example.com'
 
     def test_eq(self):
-        ticket_a = Ticket(1, None, None, None)
-        ticket_b = Ticket(1, None, None, None)
+        ticket_a = Ticket(1, None, None, {})
+        ticket_b = Ticket(1, None, None, {})
 
         assert ticket_a == ticket_b
 
     def test_not_eq(self):
-        ticket_a = Ticket(1, None, None, None)
-        ticket_b = Ticket(2, None, None, None)
+        ticket_a = Ticket(1, None, None, {})
+        ticket_b = Ticket(2, None, None, {})
 
         assert ticket_a != ticket_b

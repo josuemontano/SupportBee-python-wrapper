@@ -30,6 +30,8 @@ class TestTicketSchema(object):
         assert result.data == { 'id': ticket.id,
                                 'subject':ticket.subject,
                                 'content': ticket.content,
+                                'spam': False,
+                                'starred': False,
                                 'requester_email': ticket.requester.email,
                                 'requester_name': ticket.requester.name }
 
@@ -38,6 +40,8 @@ class TestTicketSchema(object):
         payload = { 'id': ticket.id,
                     'subject':ticket.subject,
                     'content': ticket.content,
+                    'spam': False,
+                    'starred': False,
                     'requester': { 'name': ticket.requester.name, 'email': ticket.requester.email } }
 
         result = schema.load(payload)
