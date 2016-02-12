@@ -58,5 +58,23 @@ docs/_build/
 # PyBuilder
 target/
 
+# PyCharm
+.idea
+
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# MAC OS X
+.DS_Store
+*/.DS_Store
+.DS_Store?
+__MACOSX
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
