@@ -1,5 +1,6 @@
 import requests
 import json
+from urllib.parse import urlencode
 
 TIMEOUT = 15
 
@@ -19,14 +20,17 @@ class SupportbeeClient(object):
         self.base_url = self.root.format(company)
         self.api_token = api_token
 
-    def build_get_query(self, **kwargs):
-        """ Appends to root the resource and auth token
-        """
-        # TODO: Use a library and escape kwargs
-        query = '{0}/{1}?auth_token={2}'.format(self.base_url, self.resource, self.api_token)
-        for name, value in kwargs.items():
-            query += '&{0}={1}'.format(str(name).lower(), str(value).lower())
+    def build_get_url(self, **kwargs):
+        """ Add GET params to base URL
 
+        :param kwargs: Dictionary containing requested params to be added
+        :return: string with updated URL
+        """
+        params = dict(map(bool_to_string, kwargs.items()))
+        params['auth_token'] = self.api_token
+
+        query = '{0}/{1}?'.format(self.base_url, self.resource)
+        query += urlencode(params)
         return query
 
     def get(self, query):
@@ -39,3 +43,12 @@ class SupportbeeClient(object):
         else:
             payload = json.loads(ans.text).get(self.resource)
             return self.schema.load(payload).data
+
+
+def bool_to_string(item):
+    """ Returns a tuple identical to the given one, unless
+        its second term is a boolean. In that case this is
+        turned to a lowercase string.
+    """
+    key, value = item
+    return (key, str(value).lower() if isinstance(value, bool) else value)
