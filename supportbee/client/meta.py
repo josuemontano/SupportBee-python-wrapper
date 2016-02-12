@@ -4,8 +4,8 @@ import json
 TIMEOUT = 15
 
 
-class SupportBeeAPIWrapper(object):
-    """ Initialize the API client
+class SupportbeeClient(object):
+    """ Base SupportBee API client
     """
     resource = None
     schema = None

@@ -1,6 +1,6 @@
-class TestSupportBeeAPIWrapper(object):
-    def test_init(self, supportbee_api_wrapper):
-        wrapper = supportbee_api_wrapper
+class TestSupportbeeClient(object):
+    def test_init(self, supportbee_client):
+        wrapper = supportbee_client
 
         assert wrapper.base_url == 'https://company.supportbee.com'
         assert wrapper.api_token == 'token_123'
@@ -8,8 +8,8 @@ class TestSupportBeeAPIWrapper(object):
         assert wrapper.resource == None
         assert wrapper.schema == None
 
-    def test_build_get_query(self, supportbee_api_wrapper):
-        wrapper = supportbee_api_wrapper
+    def test_build_get_query(self, supportbee_client):
+        wrapper = supportbee_client
         wrapper.resource = 'resource'
 
         basic_query = wrapper.build_get_query()

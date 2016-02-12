@@ -1,8 +1,8 @@
-from .meta import SupportBeeAPIWrapper
+from .meta import SupportbeeClient
 from ..schema import TicketSchema
 
 
-class TicketsClient(SupportBeeAPIWrapper):
+class TicketsClient(SupportbeeClient):
     resource = 'tickets'
     schema = TicketSchema(many=True)
 

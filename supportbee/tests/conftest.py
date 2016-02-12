@@ -1,12 +1,12 @@
 import pytest
 
 from ..models import Requester, Ticket
-from ..client.meta import SupportBeeAPIWrapper
+from ..client.meta import SupportbeeClient
 
 
 @pytest.fixture
-def supportbee_api_wrapper():
-    return SupportBeeAPIWrapper('company', 'token_123')
+def supportbee_client():
+    return SupportbeeClient('company', 'token_123')
 
 
 @pytest.fixture
