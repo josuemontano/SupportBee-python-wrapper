@@ -15,7 +15,11 @@ class TestRequestSchema(object):
         payload = { 'name': 'John', 'email': 'example@example.com' }
 
         result = schema.load(payload)
-        assert isinstance(result.data, Requester)
+        deserialized = result.data
+
+        assert isinstance(deserialized, Requester)
+        assert deserialized.name == 'John'
+        assert deserialized.email == 'example@example.com'
 
 
 class TestTicketSchema(object):
@@ -24,18 +28,22 @@ class TestTicketSchema(object):
         result = schema.dump(ticket)
 
         assert result.data == { 'id': ticket.id,
-            'subject':ticket.subject,
-            'content': ticket.content,
-            'requester_email': ticket.requester.email,
-            'requester_name': ticket.requester.name }
+                                'subject':ticket.subject,
+                                'content': ticket.content,
+                                'requester_email': ticket.requester.email,
+                                'requester_name': ticket.requester.name }
 
     def test_load(self, ticket):
         schema = TicketSchema()
         payload = { 'id': ticket.id,
-            'subject':ticket.subject,
-            'content': ticket.content,
-            'requester_email': ticket.requester.email,
-            'requester_name': ticket.requester.name }
+                    'subject':ticket.subject,
+                    'content': ticket.content,
+                    'requester': { 'name': ticket.requester.name, 'email': ticket.requester.email } }
 
         result = schema.load(payload)
-        assert isinstance(result.data, Ticket)
+        deserialized = result.data
+
+        assert isinstance(deserialized, Ticket)
+        assert deserialized.id == ticket.id
+        assert deserialized.subject == ticket.subject
+        assert deserialized.content == ticket.content

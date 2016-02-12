@@ -24,8 +24,3 @@ class TicketSchema(Schema):
     @post_load
     def make_object(self, data):
         return Ticket(**data)
-
-    @pre_load
-    def build_requester(self, in_data):
-        in_data['requester'] = dict(name=in_data['requester_name'], email=in_data['requester_email'])
-        return in_data
