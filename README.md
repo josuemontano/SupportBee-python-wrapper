@@ -14,3 +14,7 @@ tickets = client.get_collection()
 tickets = client.get_collection(per_page=5, page=2)
 tickets = client.get_collection(archived=True)
 ```
+
+### Run tests
+
+Tests are written with pytest. Just run `<VENV>/bin/py.test` from console.
