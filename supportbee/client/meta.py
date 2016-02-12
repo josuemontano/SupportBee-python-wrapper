@@ -19,10 +19,15 @@ class SupportBeeAPIWrapper(object):
         self.base_url = self.root.format(company)
         self.api_token = api_token
 
-    def build_get_query(self):
+    def build_get_query(self, **kwargs):
         """ Appends to root the resource and auth token
         """
-        return '{0}/{1}?auth_token={2}'.format(self.base_url, self.resource, self.api_token)
+        # TODO: Use a library and escape kwargs
+        query = '{0}/{1}?auth_token={2}'.format(self.base_url, self.resource, self.api_token)
+        for name, value in kwargs.items():
+            query += '&{0}={1}'.format(str(name).lower(), str(value).lower())
+
+        return query
 
     def get(self, query):
         """ Makes a GET request and returns the deserialized response

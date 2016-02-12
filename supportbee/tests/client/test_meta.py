@@ -12,4 +12,8 @@ class TestSupportBeeAPIWrapper(object):
         wrapper = supportbee_api_wrapper
         wrapper.resource = 'resource'
 
-        assert wrapper.build_get_query() == 'https://company.supportbee.com/resource?auth_token=token_123'
+        basic_query = wrapper.build_get_query()
+        assert basic_query == 'https://company.supportbee.com/resource?auth_token=token_123'
+
+        options_query = wrapper.build_get_query(attr_a='value', attr_b=True)
+        assert options_query == 'https://company.supportbee.com/resource?auth_token=token_123&attr_a=value&attr_b=true'
