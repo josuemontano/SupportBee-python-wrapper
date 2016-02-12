@@ -1,5 +1,3 @@
-import pytest
-
 from ..models import Requester, Ticket
 
 

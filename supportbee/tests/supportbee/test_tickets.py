@@ -1,5 +1,5 @@
-from wrapper.schema import TicketSchema
-from wrapper.supportbee.tickets import TicketsClient
+from supportbee.schema import TicketSchema
+from supportbee.client.tickets import TicketsClient
 
 
 class TestTicketsClient(object):

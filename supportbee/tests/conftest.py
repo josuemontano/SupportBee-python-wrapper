@@ -1,7 +1,7 @@
 import pytest
 
 from ..models import Requester, Ticket
-from ..supportbee.meta import SupportBeeAPIWrapper
+from ..client.meta import SupportBeeAPIWrapper
 
 
 @pytest.fixture
