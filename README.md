@@ -8,5 +8,5 @@ from supportbee.client.tickets import TicketsClient
 
 # Fetch collection of tickets
 client = TicketsClient(company='your_company', api_token='your_api_token')
-tickets = client.get()
+tickets = client.get_collection()
 ```

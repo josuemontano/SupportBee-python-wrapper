@@ -9,8 +9,8 @@ class TestTicketsClient(object):
         assert client.resource == 'tickets'
         assert isinstance(client.schema, TicketSchema)
 
-    def test_get(self, company, api_token):
+    def test_get_collection(self, company, api_token):
         client = TicketsClient(company, api_token)
-        tickets = client.get()
+        tickets = client.get_collection()
 
         assert isinstance(tickets, list)
