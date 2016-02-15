@@ -17,8 +17,15 @@ class TicketSchema(Schema):
     id = fields.Integer()
     subject = fields.String()
     content = fields.Dict()
+    summary = fields.String()
+
     spam = fields.Boolean()
     starred = fields.Boolean()
+    unanswered = fields.Boolean()
+    archived = fields.Boolean()
+
+    replies_count = fields.Integer()
+    comments_count = fields.Integer()
 
     requester = fields.Nested(RequesterSchema, load_only=True)
     requester_name = fields.Function(lambda obj: obj.requester.name, dump_only=True)

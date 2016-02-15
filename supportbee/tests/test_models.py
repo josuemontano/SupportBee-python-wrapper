@@ -1,4 +1,4 @@
-from ..models import Requester, Ticket
+from supportbee.models import Requester, Ticket
 
 
 class TestRequester(object):
@@ -10,11 +10,19 @@ class TestRequester(object):
 
 class TestTicket(object):
     def test_init(self, ticket):
+        # Test initial values
         assert ticket.id == 1
         assert ticket.subject == 'Subject'
         assert ticket.content == {'html': 'HTML content', 'text': 'Text content'}
+        assert ticket.summary == ''
+
         assert ticket.starred == False
         assert ticket.spam == False
+        assert ticket.unanswered == True
+        assert ticket.archived == False
+
+        assert ticket.replies_count == 0
+        assert ticket.comments_count == 0
 
         assert isinstance(ticket.requester, Requester)
         assert ticket.requester.name == 'John'

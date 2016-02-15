@@ -5,7 +5,7 @@ class Requester:
 
 
 class Ticket:
-    def __init__(self, id, subject, content, requester, starred=False, spam=False):
+    def __init__(self, id, subject, content, requester, summary='', starred=False, spam=False, unanswered=True, archived=False, replies_count=0, comments_count=0):
         """
         :param ticket_id: ID of the ticket
         :param subject: Subject of the ticket. REQUIRED for posting data
@@ -19,8 +19,15 @@ class Ticket:
         self.subject = subject
         self.content = content
         self.requester = requester
+        self.summary = summary
+
         self.starred = starred
         self.spam = spam
+        self.unanswered = unanswered
+        self.archived = archived
+
+        self.replies_count = replies_count
+        self.comments_count = comments_count
 
     def __eq__(self, other):
         return self.id == other.id
