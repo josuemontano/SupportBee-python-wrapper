@@ -32,11 +32,11 @@ class SupportbeeClient(object):
         query += urlencode(params)
         return query
 
-    def get(self, query):
-        """ Makes a GET request and returns the deserialized response
+    def get(self, url):
+        """ Makes a GET request and returns the deserialized response.
         """
         try:
-            ans = requests.get(query, timeout=TIMEOUT)
+            ans = requests.get(url, timeout=TIMEOUT)
         except (ConnectionError, TimeoutError) as e:
             raise e
         else:
@@ -45,9 +45,9 @@ class SupportbeeClient(object):
 
 
 def bool_to_string(item):
-    """ Returns a tuple identical to the given one, unless
-        its second term is a boolean. In that case this is
-        turned to a lowercase string.
+    """
+    Returns a tuple identical to the given one, unless its second term
+    is a boolean. In that case this is turned to a lowercase string.
     """
     key, value = item
     return (key, str(value).lower() if isinstance(value, bool) else value)

@@ -10,5 +10,5 @@ class TicketsClient(SupportbeeClient):
     def get_collection(self, **kwargs):
         """ Returns a list of tickets
         """
-        query = self.build_get_url(**kwargs)
-        return self.get(query)
+        url = self.build_get_url(**kwargs)
+        return self.get(url)
