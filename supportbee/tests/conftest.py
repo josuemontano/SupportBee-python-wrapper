@@ -1,7 +1,7 @@
 import pytest
 
-from ..models import Requester, Ticket
-from ..client.meta import SupportbeeClient
+from supportbee.models import Requester, Ticket
+from supportbee.client.meta import SupportbeeClient
 
 
 @pytest.fixture
