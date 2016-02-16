@@ -27,18 +27,19 @@ class TestTicketSchema(object):
         schema = TicketSchema()
         result = schema.dump(ticket)
 
-        assert result.data == { 'id': ticket.id,
-                                'subject':ticket.subject,
-                                'content': ticket.content,
-                                'summary': '',
-                                'spam': False,
-                                'starred': False,
-                                'unanswered': True,
-                                'archived': False,
-                                'requester_email': ticket.requester.email,
-                                'requester_name': ticket.requester.name,
-                                'comments_count': 0,
-                                'replies_count': 0 }
+        assert result.data == { 'ticket': {
+                                    'id': ticket.id,
+                                    'subject':ticket.subject,
+                                    'content': ticket.content,
+                                    'summary': '',
+                                    'spam': False,
+                                    'starred': False,
+                                    'unanswered': True,
+                                    'archived': False,
+                                    'requester_email': ticket.requester.email,
+                                    'requester_name': ticket.requester.name,
+                                    'comments_count': 0,
+                                    'replies_count': 0 }}
 
     def test_load(self):
         schema = TicketSchema()

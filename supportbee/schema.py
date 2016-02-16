@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from marshmallow.decorators import post_load, pre_load
+from marshmallow.decorators import post_load, pre_load, post_dump
 
 from .models import Ticket, Requester
 
@@ -38,3 +38,7 @@ class TicketSchema(Schema):
     @post_load
     def make_object(self, data):
         return self.__model__(**data)
+
+    @post_dump(pass_many=True)
+    def wrap_with_envelope(self, data, many):
+        return {'ticket': data} if not many else data
