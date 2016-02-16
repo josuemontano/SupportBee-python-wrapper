@@ -5,15 +5,19 @@ from .models import Ticket, Requester
 
 
 class RequesterSchema(Schema):
+    __model__ = Requester
+
     name = fields.String()
     email = fields.Email()
 
     @post_load
     def make_object(self, data):
-        return Requester(**data)
+        return self.__model__(**data)
 
 
 class TicketSchema(Schema):
+    __model__ = Ticket
+
     id = fields.Integer()
     subject = fields.String()
     content = fields.Dict()
@@ -33,4 +37,4 @@ class TicketSchema(Schema):
 
     @post_load
     def make_object(self, data):
-        return Ticket(**data)
+        return self.__model__(**data)
