@@ -32,7 +32,7 @@ class SupportbeeClient(object):
         query += urlencode(params)
         return query
 
-    def get(self, url):
+    def get(self, url, schema):
         """ Makes a GET request and returns the deserialized response.
         """
         try:
@@ -41,7 +41,21 @@ class SupportbeeClient(object):
             raise e
         else:
             payload = json.loads(ans.text).get(self.resource)
-            return self.schema.load(payload).data
+            return schema.load(payload).data
+
+    def post(self, url, item, schema):
+        """
+        Makes a POST request. Serializes the given item and posts it
+        to the given url.
+        """
+        data = schema.dump(item).data
+        try:
+            ans = requests.post(url, json=data, timeout=TIMEOUT)
+        except (ConnectionError, TimeoutError) as e:
+            raise e
+        else:
+            payload = json.loads(ans.text).get('ticket')
+            return schema.load(payload).data
 
 
 def bool_to_string(item):
